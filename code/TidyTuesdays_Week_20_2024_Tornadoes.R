@@ -224,7 +224,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
      xlab(label = "Number of Tornadoes")+
      labs(title = "Tornadoes Leave No County Untouched",
           subtitle = "Total Damages Nearing $1B For Several Mississippi Counties From 1950 - 2022.",
-     caption = "#TidyTuesday 2023 - Week 20 | Source: NOAA | By: @ETTS_12")+
+     caption = "#TidyTuesday 2023 - Week 20 | Source: NOAA | By: @ETTS12.")+
      
     
      
