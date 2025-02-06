@@ -121,12 +121,12 @@ mississippi_pop_tornados_join <- left_join(x = mississippi_population,
 
 
 #ADD MISSISSIPPI STATE REGIONS TO STATE FOR FUTURE ANALYSIS BY REGION####
-final_datset <- final_dataset |> 
+final_dataset <- final_dataset |> 
  left_join(y = state_regions,by = join_by(NAME.y == counties)) |> print(n = 90)
 
 
 
-
+rm(final_datset)
 
 
       
@@ -135,9 +135,10 @@ final_datset <- final_dataset |>
 #CREATE CASE WHEN FUNCTION TO SET COLORS FOR OUTLIERS AND REDUCE OPACITY OF OTHER POINTS ON CHART
 final_dataset <- final_dataset |> mutate(point_colors = 
    case_when(
-   NAME.y == "Leake" ~ "#780116",
-   NAME.y == "Stone" ~ "#f7b538",
-   TRUE ~ "#003049"),
+   NAME.y == "Leake" ~ "#780116", #most total damages
+   NAME.y == "Stone" ~ "#f2bb05", # lowest total damages
+   NAME.y == "Hinds" ~ "#e56b6f", #most tornado
+   TRUE ~ "#023047"), # all other counties
    fill = colorspace::lighten(point_colors,amount = 0.65)) 
 
 
@@ -169,10 +170,29 @@ final_dataset <- final_dataset |> mutate(point_colors =
                fill = "#f0f0f0",
                color = "#282828",
                label.size = 0)+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      #ADD ANNOTATION FOR LEAKE COUNTY DAMAGES####
+      annotate(geom = "label",x = 60.75,y = 503622000,label = "$672M in Damages",
+               size =2.05,
+               family = "sans",
+               hjust = "left",
+               vjust = "center",
+               fill = "#f0f0f0",
+               color = "#282828",
+               label.size = 0)+
   
    
    
-    #ADD ANNOTATION FOR JACKSON COUNTY 
+    #ADD ANNOTATION FOR STONE COUNTY#### 
     annotate(geom = "label",x = 20.95,y = 1005000,label = toupper("Stone County"),
             size =3.25,
             family = "sans",
@@ -182,6 +202,65 @@ final_dataset <- final_dataset |> mutate(point_colors =
             color = "#282828",
             label.padding = unit(.005,"lines"),
             label.size = 0)+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  #ADD ANNOTATION FOR STONE COUNTY DAMAGES#### 
+  annotate(geom = "label",x = 23.5,y =770000,label = "$105M in Damages",
+           size =2.05,
+           family = "sans",
+           hjust = "left",
+           vjust = "center",
+           fill = "#f0f0f0",
+           color = "#282828",
+           label.padding = unit(.005,"lines"),
+           label.size = 0)+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      #ADD ANNOTATION FOR HINDS COUNTY#### 
+      annotate(geom = "label",x = 106,y = 147937000,label = toupper("HINDS County"),
+               size =3.25,
+               family = "sans",
+               hjust = "left",
+               vjust = "center",
+               fill = "#f0f0f0",
+               color = "#282828",
+               label.padding = unit(.005,"lines"),
+               label.size = 0)+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      #ADD ANNOTATION FOR HINDS COUNTY Damages#### 
+  annotate(geom = "label",x = 108,y = 115937000,label = "$147M in Damages",
+           size =2.05,
+           family = "sans",
+           hjust = "left",
+           vjust = "center",
+           fill = "#f0f0f0",
+           color = "#282828",
+           label.padding = unit(.005,"lines"),
+           label.size = 0)+
+      
      
    
    
@@ -214,7 +293,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
    
      theme_fivethirtyeight()+
      scale_y_continuous(labels = label_currency(scale_cut = cut_short_scale(1e-9)), trans = "log10",
-                        limits = c(1000000,1000000000))+
+                        limits = c(700000,1000000000))+
      scale_x_continuous(breaks = seq(0,120,20),limits = c(0,120))+
      
          
@@ -247,7 +326,9 @@ final_dataset <- final_dataset |> mutate(point_colors =
                                        family = "sans",
                                        colour = "#282828"))+
    
-     theme(legend.position = "none")
+     theme(legend.position = "none")+
+      
+      coord_cartesian(clip = "off",ylim =c(800000,1000000000))
   
   
    
