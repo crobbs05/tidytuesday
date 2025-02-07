@@ -147,18 +147,27 @@ final_dataset <- final_dataset |> mutate(point_colors =
 
            
   #USE FINAL DATASET TO CREATE PLOT 
-  final_dataset |> ggplot(mapping = aes(x= total_tornados,y = total_loss,size = 5))+
+  final_dataset |> ggplot(mapping = aes(x= total_tornados,y = total_loss,size = total_loss/1000))+
    
    
    #ADD HORIZONTAL LINE TO SHOW THE MEDIAN TORNADO LOSS
    geom_hline(yintercept = median(final_dataset$total_loss,na.rm = T), 
               color = "#282828",alpha = .75,linetype =3)+
+      
+      
+      
+      
+      
   
    
    
    #ADD POINT DATA TO PLOT
     geom_point(color = final_dataset$point_colors,fill = final_dataset$fill,
                pch=21,show.legend = F)+
+      
+      
+      
+      
    
    
    #ADD ANNOTATION FOR LEAKE COUNTY
@@ -193,7 +202,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
    
    
     #ADD ANNOTATION FOR STONE COUNTY#### 
-    annotate(geom = "label",x = 20.95,y = 1005000,label = toupper("Stone County"),
+    annotate(geom = "label",x = 19.5,y = 1005000,label = toupper("Stone County"),
             size =3.25,
             family = "sans",
             hjust = "left",
@@ -212,7 +221,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
       
       
   #ADD ANNOTATION FOR STONE COUNTY DAMAGES#### 
-  annotate(geom = "label",x = 23.5,y =770000,label = "$105M in Damages",
+  annotate(geom = "label",x = 22.5,y =770000,label = "$1.05M in Damages",
            size =2.05,
            family = "sans",
            hjust = "left",
@@ -265,44 +274,65 @@ final_dataset <- final_dataset |> mutate(point_colors =
    
    
    #ADD ANNOTATION FOR OTHER MISSISSIPPI COUNTIES
-   
-        geom_richtext(mapping = aes(x = 70.5,y = 29500000),
-                      label = toupper("Other Counties <br> In Mississippi"),
+           annotate(geom = "label",x = 70.5,y = 2355000,
+                      label = toupper("Other Counties\nin Mississippi"),
                       fill = "#f0f0f0",
-                      color = "#003049",
+                      color = "#282828",
                       family = "sans",
                       fontface ="plain",
-                      alpha =.35,
-                      size =2.55,
+                      alpha =.55,
+                      size =2.00,
                       hjust = "center",
                       vjust = "center",
                       label.padding = unit(.005,"lines"),
-                      label.size = 0,
-                      angle =45)+
+                      label.size = 0)+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    #add arrow annotations for avg time to HIRE####
+      annotate(geom = "curve",x = 69.25,y = 2910000,xend = 73.5,yend = 5400000, 
+               curvature =-0.25,linewidth =.25, color ="#282828",
+               arrow = arrow(length = unit(x = .15,units = 'cm')))+
+      
+      
+      
+      
+      
+      
+      
 
   
    #ADD ANNOTATION FOR TOTAL DAMAGE FROM TORNADOS
-   annotate(geom = "label",x = 90,y = 15599999,label = toupper("median total loss\nby county\n$10,549,250"),
-            size =1.90,
+   annotate(geom = "label",x = 90,y = 17599999,label = toupper("median\ntotal damages\nby county\n$10,549,250"),
+            size =1.99,
             fill = "#f0f0f0",
-            color = "#003049",
+            color = "#282828",
             fontface ="plain",
-            label.size = NA,#removes boarder around label
-            
-            )+
+            label.size = NA)+#removes boarder around label
    
+      
+      #ADD PLOT THEME####
      theme_fivethirtyeight()+
+      
+      
+     #SET X AND Y SCALE FOR THE PLOT####
      scale_y_continuous(labels = label_currency(scale_cut = cut_short_scale(1e-9)), trans = "log10",
                         limits = c(700000,1000000000))+
      scale_x_continuous(breaks = seq(0,120,20),limits = c(0,120))+
      
          
      
-     #ADD TITLE, LABELS, AND CAPTION TO THE CHART
+     #ADD TITLE, LABELS, AND CAPTION TO THE CHART####
      ylab(label = "Total Loss (In U.S. Dollars)")+
      xlab(label = "Number of Tornadoes")+
      labs(title = "Tornadoes Leave No County Untouched",
-          subtitle = "Total Damages Nearing $1B For Several Mississippi Counties From 1950 - 2022.",
+          subtitle = "Economic damages for several Mississippi counties is near $1B from 1950 to 2022.",
      caption = "#TidyTuesday 2023 - Week 20 | Source: NOAA | By: @ETTS12.BSKY.SOCIAL")+
      
     
@@ -328,15 +358,22 @@ final_dataset <- final_dataset |> mutate(point_colors =
    
      theme(legend.position = "none")+
       
-      coord_cartesian(clip = "off",ylim =c(800000,1000000000))
+     
+      
+      
+      
+     #TURN OFF CLIP. SET LIMITS FOR THE Y-AXIS. ADJUST LIMITS OF THE SCALE TO SEE CHANGES ON PLOT####
+     coord_cartesian(clip = "off",ylim =c(800000,1000000000))
   
   
    
-#PLOT CHART AND SAVE TO LOCALLY
+#PLOT CHART AND SAVE TO LOCALLY####
 ggsave(filename = "tornadoes.png",
        device = "png",width = 7.5,height = 5 ,units = "in",dpi = 400,plot = last_plot())
 
  
+
+
 
 
 
