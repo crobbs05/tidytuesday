@@ -1,5 +1,6 @@
 #TidyTuesdays 
 #Week 20
+#Year 2023
 #Topic:tornadoes
 #by:Chauncey Robbs
 
@@ -145,9 +146,12 @@ final_dataset <- final_dataset |> mutate(point_colors =
 
 
 
-           
-  #USE FINAL DATASET TO CREATE PLOT 
-  final_dataset |> ggplot(mapping = aes(x= total_tornados,y = total_loss,size = total_loss/1000))+
+     
+
+
+
+   #USE FINAL DATASET TO CREATE PLOT 
+   final_dataset |> ggplot(mapping = aes(x= total_tornados,y = total_loss,size = total_loss/1000))+
    
    
    #ADD HORIZONTAL LINE TO SHOW THE MEDIAN TORNADO LOSS
@@ -166,8 +170,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
                pch=21,show.legend = F)+
       
       
-      
-      
+
    
    
    #ADD ANNOTATION FOR LEAKE COUNTY
@@ -187,6 +190,28 @@ final_dataset <- final_dataset |> mutate(point_colors =
       
       
       
+      #MANUAL SCALE FOR CHART#
+      #DID NOT ADD TO GRAPHIC#
+      #annotate(geom = "point",x = c(110,110,110),y = c(672822000,520000000,440000000), pch=1,
+            #fill = "#f0f0f0",color = "#3A3A3A",size =c(6.5,4.5,2.5))+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      #MANUAL SCALE FOR CHART#
+      #DID NOT ADD TO GRAPHIC#
+      #annotate(geom = "text",x = c(115,115,115),y = c(682822000,520000000,420000000),
+               #label = c("500M","300M","100M"),color = "#3A3A3A",size =1.75)+
+      
+      
+      
+      
+      
       
       
       #ADD ANNOTATION FOR LEAKE COUNTY DAMAGES####
@@ -201,8 +226,8 @@ final_dataset <- final_dataset |> mutate(point_colors =
   
    
    
-    #ADD ANNOTATION FOR STONE COUNTY#### 
-    annotate(geom = "label",x = 19.5,y = 1005000,label = toupper("Stone County"),
+      #ADD ANNOTATION FOR STONE COUNTY#### 
+      annotate(geom = "label",x = 19.5,y = 1005000,label = toupper("Stone County"),
             size =3.25,
             family = "sans",
             hjust = "left",
@@ -220,8 +245,8 @@ final_dataset <- final_dataset |> mutate(point_colors =
       
       
       
-  #ADD ANNOTATION FOR STONE COUNTY DAMAGES#### 
-  annotate(geom = "label",x = 22.5,y =770000,label = "$1.05M in Damages",
+     #ADD ANNOTATION FOR STONE COUNTY DAMAGES#### 
+     annotate(geom = "label",x = 22.5,y =770000,label = "$1.05M in Damages",
            size =2.05,
            family = "sans",
            hjust = "left",
@@ -260,7 +285,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
       
       
       #ADD ANNOTATION FOR HINDS COUNTY Damages#### 
-  annotate(geom = "label",x = 108,y = 115937000,label = "$147M in Damages",
+      annotate(geom = "label",x = 108,y = 115937000,label = "$147M in Damages",
            size =2.05,
            family = "sans",
            hjust = "left",
@@ -273,6 +298,12 @@ final_dataset <- final_dataset |> mutate(point_colors =
      
    
    
+      
+      
+      
+      
+      
+      
    #ADD ANNOTATION FOR OTHER MISSISSIPPI COUNTIES
            annotate(geom = "label",x = 70.5,y = 2355000,
                       label = toupper("Other Counties\nin Mississippi"),
@@ -296,9 +327,9 @@ final_dataset <- final_dataset |> mutate(point_colors =
       
       
     #add arrow annotations for avg time to HIRE####
-      annotate(geom = "curve",x = 69.25,y = 2910000,xend = 73.5,yend = 5400000, 
-               curvature =-0.25,linewidth =.25, color ="#282828",
-               arrow = arrow(length = unit(x = .15,units = 'cm')))+
+      annotate(geom = "curve",x = 69.25,y = 2910000,xend = 73.5,yend = 6450000, 
+               curvature =-0.30,linewidth =.25, color ="#282828",
+               arrow = arrow(length = unit(x = .10,units = 'cm')))+
       
       
       
@@ -309,7 +340,7 @@ final_dataset <- final_dataset |> mutate(point_colors =
 
   
    #ADD ANNOTATION FOR TOTAL DAMAGE FROM TORNADOS
-   annotate(geom = "label",x = 90,y = 17599999,label = toupper("median\ntotal damages\nby county\n$10,549,250"),
+   annotate(geom = "label",x = 90,y = 15999999,label = toupper("median\neconomic damages\n$10.5m"),
             size =1.99,
             fill = "#f0f0f0",
             color = "#282828",
@@ -317,8 +348,22 @@ final_dataset <- final_dataset |> mutate(point_colors =
             label.size = NA)+#removes boarder around label
    
       
-      #ADD PLOT THEME####
+      
+      
+      
+      
+      
+      
+      
+     #ADD PLOT THEME####
      theme_fivethirtyeight()+
+      
+      
+      
+      
+      
+      
+      
       
       
      #SET X AND Y SCALE FOR THE PLOT####
@@ -328,22 +373,37 @@ final_dataset <- final_dataset |> mutate(point_colors =
      
          
      
+      
+      
+      
+      
+      
+      
      #ADD TITLE, LABELS, AND CAPTION TO THE CHART####
-     ylab(label = "Total Loss (In U.S. Dollars)")+
+     ylab(label = "Total Economic Loss (In U.S. Dollars)")+
      xlab(label = "Number of Tornadoes")+
      labs(title = "Tornadoes Leave No County Untouched",
-          subtitle = "Economic damages for several Mississippi counties is near $1B from 1950 to 2022.",
+          subtitle = str_to_title("Economic damages for counties in Mississippi from 1950 to 2022."),
      caption = "#TidyTuesday 2023 - Week 20 | Source: NOAA | By: @ETTS12.BSKY.SOCIAL")+
      
     
      
      
+      
+      
+      
+      
+      
      #ADJUST THE THEME OF THE LABELS
+     theme(plot.title = element_text(hjust = .45))+
+     
+     theme(plot.subtitle = element_text(hjust = .45))+
+     
      theme(axis.title.y = element_text(face = "bold",
                                        size = 7,
                                        color = "#282828",
                                        hjust = .5,
-                                       margin = margin(r = 15, l = .5)
+                                       margin = margin(r = 8, l = 1)
                                        ))+
      theme(axis.title.x = element_text(face = "bold",
                                        size = 7,
@@ -356,17 +416,26 @@ final_dataset <- final_dataset |> mutate(point_colors =
                                        family = "sans",
                                        colour = "#282828"))+
    
-     theme(legend.position = "none")+
-      
+     
      
       
+      
+      
+     
       
       
      #TURN OFF CLIP. SET LIMITS FOR THE Y-AXIS. ADJUST LIMITS OF THE SCALE TO SEE CHANGES ON PLOT####
      coord_cartesian(clip = "off",ylim =c(800000,1000000000))
   
   
-   
+ 
+  
+  
+  
+  
+  
+  
+    
 #PLOT CHART AND SAVE TO LOCALLY####
 ggsave(filename = "tornadoes.png",
        device = "png",width = 7.5,height = 5 ,units = "in",dpi = 400,plot = last_plot())
@@ -377,3 +446,5 @@ ggsave(filename = "tornadoes.png",
 
 
 
+
+  
