@@ -1,6 +1,5 @@
 #TidyTuesdays 
 #Week 20
-#Year 2023
 #Topic:tornadoes
 #by:Chauncey Robbs
 
