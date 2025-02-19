@@ -110,7 +110,7 @@ geom_waffle(n_rows = 7,flip = TRUE,make_proportional = FALSE,size = .05, width =
     
     scale_fill_manual(values =c("TRUE"="#E6A600","FALSE"="#972136"))+
     
-    labs(title = "Maryland city and county law enforcement agencies report crime data to the FBI but participation varies.")+
+    labs(title = "Participation varies by Maryland law enforcement agencies when reporting crime data to the FBI.")+
     labs(subtitle = ("Counties report at 93% to the FBI's National Incident-Based Reporting System (NIBRS) compared to 82% by city agencies."))+
     labs(caption =  "#TidyTuesday 2025 - Week 07 | Source: FBI | By: @ETTS12.BSKY.SOCIAL")+
     
