@@ -126,7 +126,7 @@ geom_waffle(n_rows = 7,flip = TRUE,make_proportional = FALSE,size = .05, width =
     theme(plot.caption.position = "plot",plot.caption = element_text(color = "#DCDCDC",
          size = 12.5, family ="Mitr", hjust = -.55,margin = margin(b = 5)))+
     annotate(geom = "text",x = 5,y = .25,hjust =.75,color = "#DCDCDC", size =5,family ="Mitr",
-             label = "1 Box = 1 Law Enforemcent Agency")+
+             label = "1 Box = 1 Law Enforcement Agency")+
     coord_equal(expand = TRUE,clip = "off",ylim = c(0,13))
    
 
