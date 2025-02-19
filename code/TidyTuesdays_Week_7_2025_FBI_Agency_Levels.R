@@ -19,7 +19,6 @@ library(patchwork)
 library(janitor)
 library(glue)
 library(ggtext)
-library(voronoiTreemap)
 library(tigris)
 library(waffle)
 
