@@ -102,33 +102,38 @@ showtext_auto()
 
 
 #create plot####
-reporting_status |> ggplot(mapping = aes(values = total,fill = is_nibrs))+
-geom_waffle(n_rows = 7,flip = TRUE,make_proportional = FALSE,size = .05, width =.85, height =.85,color = NA,
+reporting_status |> ggplot(mapping = aes(x = agency_type, values = total,fill = is_nibrs))+
+geom_waffle(n_rows = 7,flip = TRUE, make_proportional = FALSE, size = .05, width =.85, height =.85,color = NA,
             alpha =.75,radius = unit(4, "pt"),show.legend = FALSE)+
-   facet_wrap(~agency_type,nrow =1)+
+   facet_wrap(~agency_type, nrow =1, dir = "v")+
    theme_void()+
     
     scale_fill_manual(values =c("TRUE"="#E6A600","FALSE"="#972136"))+
     
-    labs(title = "Participation varies by Maryland law enforcement agencies when reporting crime data to the FBI.")+
+    labs(title = "Reporting crime data to the FBI varies by locality in Maryland.")+
     labs(subtitle = ("Counties report at <span style ='color:#E6A600;'>**93%**</span> to the FBI's National Incident-Based Reporting System (NIBRS) compared to <span style ='color:#E6A600;'>**82%**</span>  by city agencies."))+
     labs(caption =  "#TidyTuesday 2025 - Week 07 | Source: FBI | By: @ETTS12.BSKY.SOCIAL")+
     
-  
+    
     
     theme(plot.background = element_rect(fill = "#292929", color = NA))+
+    
     theme(strip.text.x = element_text(vjust = 0.5,margin = ))+
-    theme(strip.text = element_text(color = "#DCDCDC",size = 28,family = "Mitr",face ="bold",
-         margin = margin(t =25,b=-20)))+
-    theme(plot.title = element_markdown(color = "#DCDCDC", size =28, hjust = .5,
+    
+    theme(strip.text = element_text(color = "#DCDCDC",size = 30,family = "Mitr",face ="bold",
+         margin = margin(t =15,b=-05)))+
+    theme(plot.title = element_markdown(color = "#DCDCDC", size =50, hjust = .5,
          family = "Mitr", face = "bold",margin = margin(t=15)))+
-    theme(plot.subtitle = element_markdown(color = "#DCDCDC", size =22,  hjust = .5,
+    
+    theme(plot.subtitle = element_markdown(color = "#DCDCDC", size =25,  hjust = .5,
          family = "Mitr"))+
-    theme(plot.caption.position = "plot",plot.caption = element_text(color = "#DCDCDC",
-         size = 12.5, family ="Mitr", hjust = -.55,margin = margin(b = 5)))+
+   
+   theme(plot.caption.position = "plot",plot.caption = element_text(color = "#DCDCDC",
+         size = 12.5, family ="Mitr",hjust = -.45,margin = margin(b = 5)))+
+   
     annotate(geom = "text",x = 5,y = .25,hjust =.75,color = "#DCDCDC", size =5,family ="Mitr",
              label = "1 Box = 1 Law Enforcement Agency")+
-   coord_equal(expand = TRUE,clip = "off",ylim = c(0,13))
+   coord_fixed(expand = TRUE ,clip = "off")
    
 
 
