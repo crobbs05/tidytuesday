@@ -221,22 +221,28 @@ adoption_2020_label <- adoptions_clean |> slice(4)
 
 
 #Plot line Graph####
-
     ggplot(mapping = aes())+
+    
+    
+    #add geoms lines and points#
+    #dog lines#
     geom_line(data = dogs_clean,mapping = aes(x = outcome_year,y = pct, color = animal_type),
         linewidth = 1.25,show.legend = FALSE)+
     geom_line(data = dogs_clean,mapping = aes(x = outcome_year,y = pct),color = "#F0F0F0",
                   linewidth = .85,show.legend = FALSE,alpha =.35)+
+    #cat line#
     geom_line(cats_clean,mapping = aes(x = outcome_year,y = pct, color = animal_type),
               linewidth = 1.25,show.legend = FALSE)+
     geom_line(data = cats_clean,mapping = aes(x = outcome_year,y = pct),color = "#F0F0F0",
                   linewidth = .85,show.legend = FALSE,alpha =.35)+
-        
+    
+    #other animal adoptions#    
     geom_line(data = adoptions_clean, aes(x = outcome_year,y = pct,),color = "#840032",
                   linewidth = 1.25,show.legend = FALSE)+
         
     geom_line(data = adoptions_clean, aes(x = outcome_year,y = pct,),color ="#F0F0F0",
                   linewidth = .85,show.legend = FALSE,alpha =.35)+
+    
     #dog points#
     geom_point(data = dogs_clean,mapping = aes(x = outcome_year,y = pct, color = animal_type),
                size = 1.5,shape = 21,stroke = .5,fill="#F0F0F0",show.legend = FALSE)+
@@ -267,14 +273,14 @@ adoption_2020_label <- adoptions_clean |> slice(4)
     #on plot annotations#
     annotate(geom = "label",x = 2022.75,y =10, 
     label = str_wrap("Dog Adoptions Increased 128% Between 2020 and 2024.",
-    width = 30,indent = 1,whitespace_only = FALSE), size =5.5, 
+    width = 30,indent = 1,whitespace_only = FALSE), size =6.5, 
     family = "Noto Sans",fill="#F0F0F0",label.size = NA,lineheight =.5, alpha = .5)+
     
     
     
-    annotate(geom = "label",x = 2020.75,y =15.75, 
+    annotate(geom = "label",x = 2020.65,y =15.75, 
     label = str_wrap("Cat Adoptions Increased 39% Between 2020 and 2024.",
-    width = 30,indent = 1,whitespace_only = FALSE), size =5.5, 
+    width = 30,indent = 1,whitespace_only = FALSE), size =6.5, 
              family = "Noto Sans",fill="#F0F0F0",label.size = NA,lineheight =.5)+
     
     
@@ -345,13 +351,16 @@ adoption_2020_label <- adoptions_clean |> slice(4)
     
     #title and subtitle labels####
     labs(title = "Long Beach Animal Shelter Adoption Outcomes")+
-    labs(subtitle = "Adoptions of <span style ='color:#002642;'>**Cats**</span> and <span style ='color      :#e59500;'>**Dogs**</span> Differ by **3** Percentage Points in 2024. 
-    Whereas <span style ='color:#840032;'>**Other Animals**</span> are Adopted at a<br> Much Lower Percentage.")+
-    labs(caption = "#TidyTuesday 2025 - Week 09|Source: City of Long Beach Animal Care Services|By:@ETTS12.BSKY.SOCIAL")+
+    labs(subtitle = "Adoptions of <span style ='color:#002642;'>**Cats**</span> and 
+    <span style ='color:#e59500;'>**Dogs**</span> Differ by **3** Percentage Points in 2024. 
+    Whereas <span style ='color:#840032;'>**Other Animals**</span> 
+    are Adopted at a<br> Much Lower Percentage.")+
+    labs(caption = "#TidyTuesday 2025 - Week 09|Source: City of Long Beach Animal Care Services|
+    By:@ETTS12.BSKY.SOCIAL")+
     theme(plot.title = element_markdown(size = 50,family = "Noto Sans",margin = margin(b = 2.5)))+
     theme(plot.subtitle =  element_markdown(size = 30, family = "Noto Sans", margin = margin(b = 0),
     lineheight = .40))+
-    theme(plot.caption.position = "plot",plot.caption = element_text(size = 12.5,hjust = .05,
+    theme(plot.caption.position = "plot",plot.caption = element_markdown(size = 12.5,hjust = .05,
     family ="Noto Sans", margin = margin(t=10,b = 0)))+
     
 
