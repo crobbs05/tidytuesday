@@ -359,8 +359,8 @@ adoption_2020_label <- adoptions_clean |> slice(4)
     
     #title and subtitle labels####
     labs(title = "Long Beach Animal Shelter Adoption Outcomes")+
-    labs(subtitle = "Adoption of <span style ='color:#002642;'>**Cats**</span> and 
-    <span style ='color:#e59500;'>**Dogs**</span> Differ by **3** Percentage Points in 2024. 
+    labs(subtitle = "<span style ='color:#002642;'>**Cat**</span> and 
+    <span style ='color:#e59500;'>**Dog**</span> Adoptions Differ by **3** Percentage Points in 2024. 
     Whereas <span style ='color:#840032;'>**Other Animals**</span> 
     are Adopted at a<br> Much Lower Percentage.")+
     labs(caption = "#TidyTuesday 2025 - Week 09|Source: City of Long Beach Animal Care Services|
