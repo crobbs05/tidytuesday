@@ -265,23 +265,31 @@ adoption_2020_label <- adoptions_clean |> slice(4)
             size =8, fontface ="bold" )+
     annotate(geom = "text",x = 2024.25,y =17.45, label = "Cats", color = "#002642", size =8, 
              fontface ="bold")+
-    annotate(geom = "text",x = 2024.25,y =14.16, label = "Dogs", color = "#e59500", size =8, 
-             fontface ="bold")+
+    annotate(geom = "text",x = 2024.25,y =14.16, label = "Dogs", , size =8, 
+             fontface ="bold", color = "#e59500")+
     
     
     
     #on plot annotations#
-    annotate(geom = "label",x = 2022.75,y =10, 
-    label = str_wrap("Dog Adoptions Increased 128% Between 2020 and 2024.",
-    width = 30,indent = 1,whitespace_only = FALSE), size =6.5, 
-    family = "Noto Sans",fill="#F0F0F0",label.size = NA,lineheight =.5, alpha = .5)+
+    #dog adoption annotation#
+    geom_label(mapping = aes(x = 2021.95,y =10), 
+    label = str_wrap("Adoption of Dogs Increased 128% Between 2020 and 2024.",
+    width = 34,whitespace_only = FALSE), size =6.5, hjust =0,
+    family = "Noto Sans",fill="#F0F0F0",
+    label.size = NA,lineheight =.35,label.padding = unit(0,"lines"))+
+    
+
+    
+    #cat adoption annotation#
+    geom_label(mapping = aes(x = 2019.95,y =15), 
+    label = str_wrap("Adoption of Cats Increased 39% Between 2020 and 2024.",
+    width = 33,whitespace_only = FALSE), size =6.5, hjust = 0,
+    family = "Noto Sans",fill="#F0F0F0",
+    label.size = NA,lineheight =.35,label.padding = unit(-.5,"lines"))+
     
     
     
-    annotate(geom = "label",x = 2020.65,y =15.75, 
-    label = str_wrap("Cat Adoptions Increased 39% Between 2020 and 2024.",
-    width = 30,indent = 1,whitespace_only = FALSE), size =6.5, 
-             family = "Noto Sans",fill="#F0F0F0",label.size = NA,lineheight =.5)+
+
     
     
     
@@ -351,7 +359,7 @@ adoption_2020_label <- adoptions_clean |> slice(4)
     
     #title and subtitle labels####
     labs(title = "Long Beach Animal Shelter Adoption Outcomes")+
-    labs(subtitle = "Adoptions of <span style ='color:#002642;'>**Cats**</span> and 
+    labs(subtitle = "Adoption of <span style ='color:#002642;'>**Cats**</span> and 
     <span style ='color:#e59500;'>**Dogs**</span> Differ by **3** Percentage Points in 2024. 
     Whereas <span style ='color:#840032;'>**Other Animals**</span> 
     are Adopted at a<br> Much Lower Percentage.")+
