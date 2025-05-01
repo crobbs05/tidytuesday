@@ -175,7 +175,7 @@ final_dataset <- prime_hours_420_daily_accidents |>
     #label for greatest percentage of fatal accidents in 2009#
     geom_richtext(data = max_year,mapping = aes(x = date,y = pct_420_accidents),
     label = str_wrap(
-    "In 2009, **64%** of fatal accidents occurred<br>during the 4/20 celebration.Yet, the total <br>          number of fatal accidents was 98, the<br>second lowest in this 24-year period.",
+    "In 2009, **64%** of fatal accidents occurred<br>during the 4/20 celebration.The number<br> of fatal accidents for the day was 98, the<br> second lowest in this 24-year period.",
     width = 40,whitespace_only = FALSE),size =8.75, hjust =0,
                   family = "Red Hat Text",fill="#F0F0F0",label.size = NA,
                   lineheight =.37,
@@ -254,11 +254,3 @@ ggsave(filename = "Fatal_Accidents_420.png",plot = last_plot(),
 
 
 
-
-
-    
-    #geom_line(data = daily_accidents_420,mapping = aes(x = date,y = fatalities_count), color="red", size  = .15)
-#timeseries_daily_accidents <- zoo(x = daily_accidents,order.by = daily_accidents$date,frequency = 12)
-#summarise(avg_daily_fatalities = mean(fatalities_count,na.rm = TRUE),days = n()) 
-
-#aily_accidents <- daily_accidents |> arrange(date) |>  mutate(sma_7days = rollmean(fatalities_count,k = 14,fill = NA,align = "right"),.keep = "all")
