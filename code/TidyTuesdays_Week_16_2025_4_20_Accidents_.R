@@ -233,8 +233,7 @@ final_dataset <- prime_hours_420_daily_accidents |>
         
     #add title, subtitle and caption to chart#
     labs(title = "Percent of Annual Fatal Accidents Between 4:20pm and 11:59pm on 4/20.",
-    subtitle = "Fatal accidents increased by **9.4%** from 1992 to 2016, but further analysis is                  necessary to determine if this increase is linked to the celebration of 4/20.<br> 
-             Specifically, data on the number of registered drivers during this 24-year period.",
+    subtitle = "Fatal accidents increased by **9.4%** from 1992 to 2016, but further analysis is                  necessary to determine if this increase is linked to the celebration of 4/20.",
     caption = "#TidyTuesday 2025 | Week 16 | Source: 420 (data-raw) OSF | By: @ETTS12.BSKY.SOCIAL")+
     theme(plot.title = element_text(family = "Red Hat Text",size = 40))+
     theme(plot.subtitle = element_markdown(family = "Red Hat Text",size = 23,lineheight = .45))+
